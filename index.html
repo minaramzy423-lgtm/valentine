@@ -6,131 +6,102 @@
   <title>Happy Valentine 💘</title>
 
   <style>
-    :root{
-      --pink1:#ffd1dc;
-      --pink2:#ffb6c1;
-      --text:#b1003a;
-      --yes:#2ecc71;
-      --no:#ff4d6d;
-    }
-
     body{
       margin:0;
       min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      background: radial-gradient(circle at 30% 20%, var(--pink1), var(--pink2));
+      background: radial-gradient(circle at 30% 20%, #ffd1dc, #ffb6c1);
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       overflow:hidden;
-      padding:24px;
       text-align:center;
     }
 
     .wrap{
-      width:min(740px, 95vw);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
+      width:90%;
+      max-width:700px;
     }
 
     h1{
-      margin:0;
-      color:var(--text);
-      font-size: clamp(26px, 4.8vw, 46px);
-      font-weight: 900;
-      text-shadow: 0 2px 0 rgba(255,255,255,.55);
+      color:#b1003a;
+      font-size: clamp(26px,5vw,44px);
+      font-weight:900;
+      margin-bottom:12px;
     }
 
     #sticker{
-      width: min(240px, 55vw);
-      height:auto;
-      border-radius: 14px;
-      user-select:none;
-      -webkit-user-drag:none;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.10));
-      background: rgba(255,255,255,.25);
+      width:220px;
+      max-width:60vw;
+      border-radius:16px;
+      box-shadow:0 10px 20px rgba(0,0,0,.15);
+      background:rgba(255,255,255,.3);
     }
 
     #caption{
-      font-size: 14px;
-      font-weight: 800;
-      color: rgba(122,0,48,.90);
-      min-height: 22px;
+      margin-top:8px;
+      font-weight:800;
+      color:#7a0030;
+      min-height:24px;
     }
 
     .buttons{
-      position: relative;
-      width:min(720px, 95vw);
-      height: 200px;
-      margin-top: 4px;
+      position:relative;
+      height:200px;
+      margin-top:20px;
     }
 
     button{
       border:none;
       cursor:pointer;
-      font-weight: 900;
-      box-shadow: 0 12px 26px rgba(0,0,0,.12);
-      user-select:none;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform .12s ease;
+      font-weight:900;
+      box-shadow:0 12px 26px rgba(0,0,0,.15);
+      transition:transform .15s ease;
     }
-    button:active{ transform: scale(.98); }
 
     #yes{
       position:absolute;
-      left: 10%;
-      top: 35px;
-      background: var(--yes);
+      left:10%;
+      top:40px;
+      background:#2ecc71;
       color:white;
-      border-radius: 18px;
-      font-size: clamp(34px, 6vw, 64px);
-      padding: 34px 82px;  /* big like the video */
-      transform-origin:center;
+      font-size:clamp(32px,6vw,60px);
+      padding:30px 80px;
+      border-radius:20px;
     }
 
     #no{
       position:absolute;
-      right: 12%;
-      top: 88px;
-      background: var(--no);
+      right:12%;
+      top:100px;
+      background:#ff4d6d;
       color:white;
-      border-radius: 12px;
-      font-size: 14px;
-      padding: 10px 16px;
-      white-space: nowrap;
-      opacity: .98;
-    }
-
-    .runaway{ animation: spin .35s ease; }
-    @keyframes spin{
-      0%{ transform: rotate(0deg) scale(1); }
-      60%{ transform: rotate(18deg) scale(1.06); }
-      100%{ transform: rotate(0deg) scale(1); }
+      font-size:14px;
+      padding:10px 16px;
+      border-radius:12px;
+      white-space:nowrap;
     }
 
     .heart{
-      position: fixed;
-      top: -24px;
+      position:fixed;
+      top:-20px;
       pointer-events:none;
-      animation: fall linear forwards;
-      opacity:.95;
+      animation:fall linear forwards;
     }
+
     @keyframes fall{
-      to{ transform: translateY(110vh); opacity:0; }
+      to{ transform:translateY(110vh); opacity:0; }
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <h1>Will you be my Valentine? 💕</h1>
+    <h1>Mahra 💖 will you be my Valentine?</h1>
 
-    <!-- Your stickers -->
-    <img id="sticker" src="sticker1.png.jpeg" alt="sticker"/>
+    <img id="sticker" src="sticker1.png.jpeg" alt="sticker">
 
-    <div id="caption"></div>
+    <div id="caption">Be nice Mahra 😇</div>
 
     <div class="buttons" id="area">
       <button id="yes">Yes</button>
@@ -138,136 +109,96 @@
     </div>
   </div>
 
-  <script>
-    const yesBtn = document.getElementById("yes");
-    const noBtn  = document.getElementById("no");
-    const area   = document.getElementById("area");
-    const stickerImg = document.getElementById("sticker");
-    const caption = document.getElementById("caption");
+<script>
+  const yesBtn = document.getElementById("yes");
+  const noBtn  = document.getElementById("no");
+  const area   = document.getElementById("area");
+  const stickerImg = document.getElementById("sticker");
+  const caption = document.getElementById("caption");
 
-    let noCount = 0;
-    let yesScale = 1;
+  let noCount = 0;
+  let yesScale = 1;
 
-    // IMPORTANT: matches your uploaded filenames (png.jpeg)
-    const stickers = [
-      "sticker1.png.jpeg",
-      "sticker2.png.jpeg",
-      "sticker3.png.jpeg",
-      "sticker4.png.jpeg",
-      "sticker5.png.jpeg",
-      "sticker6.png.jpeg"
-    ];
+  const stickers = [
+    "sticker1.png.jpeg",
+    "sticker2.png.jpeg",
+    "sticker3.png.jpeg",
+    "sticker4.png.jpeg",
+    "sticker5.png.jpeg",
+    "sticker6.png.jpeg",
+    "sticker7.png.jpeg"
+  ];
 
-    const noTexts = [
-      "No 😅",
-      "Are you sure? 🥺",
-      "Please??? 🙃",
-      "Don’t do this to me 😭",
-      "I’ll be very sad... 😔",
-      "Okay stop pressing NO 😂",
-      "Just say YES 😌💘"
-    ];
+  const captions = [
+    "Come on Mahra 🥺",
+    "Don’t be mean 😭",
+    "My heart can’t take this 💔",
+    "Please say yes 😤",
+    "Last chance Mahra 😈",
+    "Okay you’re scary now 😂",
+    "Just press YES 💘"
+  ];
 
-    const captions = [
-      "Be nice 😇",
-      "Come on… just one YES 😭",
-      "Stop trolling me 😤",
-      "My heart is shaking 💔",
-      "Last warning 😈",
-      "Okay… you asked for it 😤😂"
-    ];
+  function moveNo(){
+    const maxX = area.clientWidth - noBtn.offsetWidth;
+    const maxY = area.clientHeight - noBtn.offsetHeight;
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top  = Math.random() * maxY + "px";
+  }
 
-    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+  function onNo(){
+    noCount++;
 
-    function moveNo(){
-      const pad = 10;
-      const maxX = area.clientWidth - noBtn.offsetWidth - pad;
-      const maxY = area.clientHeight - noBtn.offsetHeight - pad;
+    yesScale = Math.min(1 + noCount * 0.15, 2.4);
+    yesBtn.style.transform = `scale(${yesScale})`;
 
-      const x = pad + Math.random() * Math.max(1, maxX);
-      const y = pad + Math.random() * Math.max(1, maxY);
+    stickerImg.src = stickers[Math.floor(Math.random() * stickers.length)];
+    caption.textContent = captions[Math.min(noCount-1, captions.length-1)];
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top  = y + "px";
-
-      noBtn.classList.remove("runaway");
-      void noBtn.offsetWidth;
-      noBtn.classList.add("runaway");
-    }
-
-    function onNo(){
-      noCount++;
-
-      // Grow YES
-      yesScale = clamp(1 + noCount * 0.14, 1, 2.3);
-      yesBtn.style.transform = `scale(${yesScale})`;
-
-      // Make NO smaller slowly
-      const noScale = clamp(1 - noCount * 0.06, 0.55, 1);
-      setTimeout(()=>{ noBtn.style.transform = `scale(${noScale})`; }, 120);
-
-      // Change sticker (random)
-      stickerImg.src = stickers[Math.floor(Math.random() * stickers.length)];
-
-      // Change NO text
-      noBtn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
-
-      // Caption under sticker
-      caption.textContent = captions[Math.min(noCount-1, captions.length-1)] || "Just say YES 💘";
-
-      moveNo();
-    }
-
-    // Desktop
-    noBtn.addEventListener("mouseenter", onNo);
-
-    // Mobile + click
-    noBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      onNo();
-    }, {passive:false});
-
-    noBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      onNo();
-    });
-
-    yesBtn.addEventListener("click", () => {
-      document.body.innerHTML = `
-        <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:24px;
-                    background: radial-gradient(circle at 30% 20%, #ffd1dc, #ffb6c1);
-                    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">
-          <div>
-            <h1 style="margin:0; color:#b1003a; font-size: clamp(28px,5vw,56px); font-weight:900;">
-              Knew you would say YES! 🎉💖
-            </h1>
-            <p style="margin:14px 0 0; color:#7a0030; font-weight:800; font-size: clamp(16px,3vw,22px);">
-              You just made me the happiest person 🥰
-            </p>
-            <p style="margin:12px 0 0; color:#b1003a; font-weight:900; font-size: 20px;">
-              Happy Valentine 💘
-            </p>
-          </div>
-        </div>
-      `;
-
-      // hearts
-      let count = 0;
-      const timer = setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.textContent = Math.random() > 0.5 ? "💖" : "💘";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (14 + Math.random()*20) + "px";
-        heart.style.animationDuration = (2.5 + Math.random()*2.8) + "s";
-        document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(), 7000);
-        if(++count > 90) clearInterval(timer);
-      }, 110);
-    });
-
-    // start position
     moveNo();
-  </script>
+  }
+
+  noBtn.addEventListener("mouseenter", onNo);
+  noBtn.addEventListener("click", onNo);
+  noBtn.addEventListener("touchstart", e => {
+    e.preventDefault();
+    onNo();
+  });
+
+  yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;
+                  background:radial-gradient(circle,#ffd1dc,#ffb6c1);text-align:center;">
+        <div>
+          <h1 style="color:#b1003a;font-size:48px;font-weight:900;">
+            I knew it Mahra! 💖🎉
+          </h1>
+          <p style="font-size:22px;font-weight:800;color:#7a0030;">
+            You just made me the happiest person 🥰
+          </p>
+          <p style="font-size:20px;font-weight:900;color:#b1003a;">
+            Happy Valentine 💘
+          </p>
+        </div>
+      </div>
+    `;
+
+    let i=0;
+    const timer=setInterval(()=>{
+      const h=document.createElement("div");
+      h.className="heart";
+      h.textContent=Math.random()>0.5?"💖":"💘";
+      h.style.left=Math.random()*100+"vw";
+      h.style.fontSize=(16+Math.random()*20)+"px";
+      h.style.animationDuration=(2+Math.random()*3)+"s";
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),6000);
+      if(++i>80) clearInterval(timer);
+    },120);
+  });
+
+  moveNo();
+</script>
 </body>
 </html>
+
